@@ -10,6 +10,7 @@ function App() {
   const [year, setYear] = useState(null);
   const [results, setResults] = useState([]);
 
+  // regular search
   const searchItems = (searchTerm) => {
     const regex = /\s+/g;
 
@@ -22,6 +23,7 @@ function App() {
     setResults(output);
   };
 
+  // search using OR (||) operator
   const searchItemsOR = (label, year) => {
     const regex = /\s+/g;
 
@@ -36,6 +38,7 @@ function App() {
     setResults(output);
   };
 
+  // search using AND (&&) operator
   const searchItemsAND = (label, year) => {
     const regex = /\s+/g;
 
@@ -52,7 +55,10 @@ function App() {
 
   return (
     <main>
+      {/* form */}
       <Heading label={"Search Form"} />
+
+      {/* input boxes */}
       <Input
         type={"text"}
         placeholder={"Enter Name"}
@@ -70,6 +76,7 @@ function App() {
 
       <br />
 
+      {/* buttons */}
       <Btn label={"Search"} handleClick={() => searchItems(label)} />
       <Btn
         label={"Search (OR)"}
@@ -80,8 +87,8 @@ function App() {
         handleClick={() => searchItemsAND(label, year)}
       />
 
+      {/* results */}
       <Heading label={"Search Results"} />
-
       <section style={{ height: 400, overflow: "scroll" }}>
         {results.map(({ label, year }) => (
           <Result name={label} year={year} key={label + year} />
